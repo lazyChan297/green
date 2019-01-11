@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="22px" viewBox="0 0 18 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>Group Copy 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-30.911557%" y1="-57.0217867%" x2="100%" y2="90.3768578%" id="linearGradient-1">
+            <stop stop-color="#FBCAC6" offset="0%"></stop>
+            <stop stop-color="#EA5F53" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-81.4258578%" y1="-90.4147814%" x2="87.2098693%" y2="65.4435244%" id="linearGradient-2">
+            <stop stop-color="#FBCAC6" offset="0%"></stop>
+            <stop stop-color="#EA5F53" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="15.7778735%" x2="93.0789069%" y2="111.892944%" id="linearGradient-3">
+            <stop stop-color="#FBCAC6" offset="0%"></stop>
+            <stop stop-color="#EA5F53" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-Copy-2">
+            <polygon id="Rectangle-4" fill="url(#linearGradient-1)" points="1.79487868 12.8985171 6.70396959 12.8985171 6.70396959 21.0466653 4.31045592 18.9570184 1.79487868 21.0466653"></polygon>
+            <polygon id="Rectangle-4" fill="url(#linearGradient-2)" points="10.7948787 12.8985171 15.7039696 12.8985171 15.7039696 21.0466653 13.3104559 18.9570184 10.7948787 21.0466653"></polygon>
+            <path d="M9,16.2962963 C4.48130659,16.2962963 0.818181818,12.6482461 0.818181818,8.14814815 C0.818181818,3.64805019 4.48130659,0 9,0 C13.5186934,0 17.1818182,3.64805019 17.1818182,8.14814815 C17.1818182,12.6482461 13.5186934,16.2962963 9,16.2962963 Z M9,10.5925926 C10.355608,10.5925926 11.4545455,9.49817754 11.4545455,8.14814815 C11.4545455,6.79811876 10.355608,5.7037037 9,5.7037037 C7.64439198,5.7037037 6.54545455,6.79811876 6.54545455,8.14814815 C6.54545455,9.49817754 7.64439198,10.5925926 9,10.5925926 Z" id="Combined-Shape-Copy-2" fill="url(#linearGradient-3)"></path>
+        </g>
+    </g>
+</svg>

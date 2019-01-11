@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="65px" viewBox="0 0 65 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="8.46781433%" y1="0%" x2="100%" y2="90.3768578%" id="linearGradient-1">
+            <stop stop-color="#FF6659" offset="0%"></stop>
+            <stop stop-color="#E82D1D" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="我的" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="团长申请-提交失败" transform="translate(-128.000000, -114.000000)">
+            <rect fill="#F7F7F7" x="0" y="0" width="320" height="568"></rect>
+            <g id="Group" transform="translate(128.000000, 114.000000)">
+                <rect id="Rectangle-9" fill="url(#linearGradient-1)" x="0" y="0" width="65" height="65" rx="9"></rect>
+                <rect id="Rectangle-3" fill="#FFFFFF" transform="translate(33.000000, 32.500000) rotate(45.000000) translate(-33.000000, -32.500000) " x="30" y="15" width="6" height="35" rx="3"></rect>
+                <rect id="Rectangle-3-Copy" fill="#FFFFFF" transform="translate(33.000000, 32.500000) scale(-1, 1) rotate(45.000000) translate(-33.000000, -32.500000) " x="30" y="15" width="6" height="35" rx="3"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

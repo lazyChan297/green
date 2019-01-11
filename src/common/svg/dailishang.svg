@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="22px" viewBox="0 0 20 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 22 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="100%" x2="21.7835614%" y2="17.2405313%" id="linearGradient-1">
+            <stop stop-color="#6D96F1" offset="0%"></stop>
+            <stop stop-color="#B3D6EC" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="100%" x2="159.358717%" y2="-208.096969%" id="linearGradient-2">
+            <stop stop-color="#6D96F1" offset="0%"></stop>
+            <stop stop-color="#B3D6EC" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="100%" x2="-107.469666%" y2="-42.424497%" id="linearGradient-3">
+            <stop stop-color="#6D96F1" offset="0%"></stop>
+            <stop stop-color="#B3D6EC" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-22-Copy">
+            <path d="M9.47802339,12.1408386 C9.71610928,12.1544036 9.95739333,12.0593483 10.122468,11.86262 L13.5105019,7.82491841 C13.7882451,7.49391697 13.7450707,7.00043195 13.4140693,6.72268876 C13.0830679,6.44494558 12.5895828,6.48811992 12.3118396,6.81912136 L9.47802339,10.1963321 L6.64420713,6.81912136 C6.36646395,6.48811992 5.87297892,6.44494558 5.54197749,6.72268876 C5.21097605,7.00043195 5.1678017,7.49391697 5.44554489,7.82491841 L8.83357878,11.86262 C8.99865345,12.0593483 9.23993751,12.1544036 9.47802339,12.1408386 Z M9.84615385,0 L17.6201076,4.35714286 L17.6201076,13.0714286 L9.84615385,17.4285714 L2.07220005,13.0714286 L2.07220005,4.35714286 L9.84615385,0 Z" id="Combined-Shape" fill="url(#linearGradient-1)"></path>
+            <polygon id="Rectangle-45-Copy" fill="url(#linearGradient-2)" transform="translate(15.498328, 18.018169) scale(-1, 1) rotate(30.000000) translate(-15.498328, -18.018169) " points="12.0151099 15.7793961 18.9815456 15.7793961 18.9815456 20.2569428 15.4983278 18.978353 12.0151099 20.2569428"></polygon>
+            <polygon id="Rectangle-45-Copy-2" fill="url(#linearGradient-3)" transform="translate(4.193980, 18.018169) rotate(30.000000) translate(-4.193980, -18.018169) " points="0.710762064 15.7793961 7.6771978 15.7793961 7.6771978 20.2569428 4.19397993 18.978353 0.710762064 20.2569428"></polygon>
+        </g>
+    </g>
+</svg>

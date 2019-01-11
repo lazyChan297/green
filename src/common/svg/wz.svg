@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="20px" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>收货地址</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="订单结算" transform="translate(-15.000000, -102.000000)">
+            <rect fill="#F7F7F7" x="0" y="0" width="320" height="568"></rect>
+            <g id="收货地址" transform="translate(15.000000, 102.000000)" fill="#25C814" fill-rule="nonzero">
+                <path d="M8,0 C3.58235623,0 0,3.572442 0,7.97785987 C0,12.3832777 6.26912339,19.1272643 6.26912339,19.1272643 C7.22501396,20.2408684 8.78838638,20.2453228 9.73534338,19.1205826 C9.73534338,19.1205826 16,12.3832777 16,7.97785987 C16,3.57021479 12.4198772,2.05728462e-15 8,0 Z M8,11.412215 C5.95644891,11.412215 4.29927415,9.75962645 4.29927415,7.72173092 C4.29927415,5.6838354 5.95644891,4.03124689 8,4.03124689 C10.0435511,4.03124689 11.7007259,5.6838354 11.7007259,7.72173092 C11.7007259,9.75962645 10.0435511,11.412215 8,11.412215 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

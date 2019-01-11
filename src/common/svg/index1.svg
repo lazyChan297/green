@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="4" y="20" width="15" height="4" rx="2"></rect>
+        <filter x="-20.0%" y="-75.0%" width="140.0%" height="250.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.164705882   0 0 0 0 0.745098039   0 0 0 0 0.105882353  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-21" transform="translate(1.000000, 0.000000)">
+            <g id="Group-5-Copy-2" fill="#25C814">
+                <rect id="Rectangle-28" fill-opacity="0.2" x="8.8" y="8.8" width="9.9" height="11" rx="3"></rect>
+                <path d="M4.09655172,4.89310345 C3.65662835,4.89310345 3.3,4.53647509 3.3,4.09655172 C3.3,3.65662835 3.65662835,3.3 4.09655172,3.3 L15.2482759,3.3 C17.1546105,3.3 18.7,4.84538954 18.7,6.75172414 L18.7,17.9034483 C18.7,18.3433716 18.3433716,18.7 17.9034483,18.7 C17.4635249,18.7 17.1068966,18.3433716 17.1068966,17.9034483 L17.1068966,6.75172414 C17.1068966,5.72523628 16.2747637,4.89310345 15.2482759,4.89310345 L4.09655172,4.89310345 Z" id="Rectangle-26" fill-rule="nonzero" transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                <path d="M18.15,5.21261686 C18.15,4.76382096 18.5193651,4.4 18.975,4.4 C19.4306349,4.4 19.8,4.76382096 19.8,5.21261686 L19.8,18.4045784 C19.8,19.407343 19.7015238,19.9198379 19.417201,20.4541263 C19.1534933,20.9496759 18.7606884,21.3444397 18.2651628,21.6107712 C17.7277013,21.8996422 17.2105849,22 16.206004,22 L6.89399602,22 C5.88941506,22 5.37229869,21.8996422 4.83483717,21.6107712 C4.33931158,21.3444397 3.94650668,20.9496759 3.68279896,20.4541263 C3.39847623,19.9198379 3.3,19.407343 3.3,18.4045784 L3.3,8.50343954 C3.3,8.05464365 3.66936508,7.69082269 4.125,7.69082269 C4.58063492,7.69082269 4.95,8.05464365 4.95,8.50343954 L4.95,18.4045784 C4.95,19.1662532 5.00064668,19.4298312 5.14420768,19.6996056 C5.25700328,19.9115668 5.4167017,20.0720616 5.62517611,20.1841109 C5.88778759,20.3252575 6.14289306,20.3747663 6.89399602,20.3747663 L16.206004,20.3747663 C16.9571069,20.3747663 17.2122124,20.3252575 17.4748239,20.1841109 C17.6832983,20.0720616 17.8429967,19.9115668 17.9557923,19.6996056 C18.0993533,19.4298312 18.15,19.1662532 18.15,18.4045784 L18.15,5.21261686 Z" id="Rectangle-27" fill-rule="nonzero"></path>
+                <circle id="Oval-6" cx="11" cy="9.9" r="2.2"></circle>
+            </g>
+            <g id="Rectangle-35-Copy-3" fill="black" fill-opacity="1">
+                <use filter="url(#filter-2)" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

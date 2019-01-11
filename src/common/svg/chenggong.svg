@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="65px" viewBox="0 0 65 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="8.46781433%" y1="0%" x2="100%" y2="90.3768578%" id="linearGradient-1">
+            <stop stop-color="#47E935" offset="0%"></stop>
+            <stop stop-color="#18B801" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="我的" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="团长申请-提交成功" transform="translate(-128.000000, -114.000000)">
+            <rect fill="#F7F7F7" x="0" y="0" width="320" height="568"></rect>
+            <g id="Group" transform="translate(128.000000, 114.000000)">
+                <rect id="Rectangle-9" fill="url(#linearGradient-1)" x="0" y="0" width="65" height="65" rx="9"></rect>
+                <path d="M27.9796311,39.0862329 L47.1871843,19.8786797 C48.3587572,18.7071068 50.2582521,18.7071068 51.429825,19.8786797 C52.6013979,21.0502525 52.6013979,22.9497475 51.429825,24.1213203 L30.5190101,45.0321353 C30.4108652,45.194308 30.2852403,45.3482733 30.1421356,45.491378 C28.9705627,46.6629509 27.0710678,46.6629509 25.8994949,45.491378 L13.8786797,33.4705627 C12.7071068,32.2989899 12.7071068,30.3994949 13.8786797,29.2279221 C15.0502525,28.0563492 16.9497475,28.0563492 18.1213203,29.2279221 L27.9796311,39.0862329 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

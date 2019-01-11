@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="我的" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="物流信息" transform="translate(-24.000000, -194.000000)">
+            <rect fill="#F7F7F7" x="0" y="0" width="320" height="568"></rect>
+            <g id="Group" transform="translate(25.000000, 195.000000)" stroke="#25C814">
+                <circle id="Oval-11" fill="#FFFFFF" cx="12" cy="12" r="12"></circle>
+                <g id="Group-3" transform="translate(3.000000, 5.000000)">
+                    <path d="M6.76086957,11.2391304 L17.5,11.2391304 L17.5,3 C17.5,1.61928813 16.3807119,0.5 15,0.5 L9.26086957,0.5 C7.88015769,0.5 6.76086957,1.61928813 6.76086957,3 L6.76086957,11.2391304 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                    <path d="M0.5,6.49786876 L0.5,11.2391304 L6.54347826,11.2391304 L6.54347826,3.63043478 L3.71243198,3.63043478 L0.5,6.49786876 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                    <path d="M2.27927427,5.19565217 L0.914088012,7.32627258 L3.63128494,7.32682434 C3.95563383,7.30918953 4.19565217,7.07247741 4.19565217,6.8031522 L4.19565217,5.72033255 C4.19565217,5.4389582 3.93410809,5.19565217 3.59416244,5.19565217 L2.27927427,5.19565217 Z" id="Rectangle-5"></path>
+                    <circle id="Oval" fill="#FFFFFF" cx="3.91304348" cy="11.7391304" r="1.84782609"></circle>
+                    <circle id="Oval-Copy" fill="#FFFFFF" cx="12.5217391" cy="11.7391304" r="1.84782609"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
