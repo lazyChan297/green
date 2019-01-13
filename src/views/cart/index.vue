@@ -17,7 +17,6 @@
             </checker-item>
           </checker>
           <div class="control">
-            <!-- <div class="checkAll" :class="{'isCheckall':isCheckall}" @click="checkAll"><span class="icon icon-check"></span><span>全选</span></div> -->
             <div class="total">合计：<span class="green">¥{{total}}</span></div>
             <div class="submit">结算</div>
           </div>
