@@ -121,7 +121,7 @@ export default {
                             time: 500
                         })
                     } else {
-                        this.$router.push('/payment')
+                        //this.$router.push('/payment')
                     }
                 }
             })
