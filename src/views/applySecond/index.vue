@@ -1,13 +1,13 @@
 <template>
     <div class="applySecond-wrapper">
-        <div class="disable" v-if="userInfo.hasBought==0">
+        <!-- <div class="disable" v-if="userInfo.hasBought==0">
             <img src="../../common/images/shenqingdls.jpg" alt="" class="bgimg">
             <div class="desc-container">
                 <p class="desc">对不起，您还未购买任何一款一县一品产品，不符合团长申请条件！请您先去购买。</p>
             </div>
             <div class="submit">去购买</div>
-        </div>
-        <div v-else-if="userInfo.distributorApplication == 0" class="waitingValid">
+        </div> -->
+        <div v-if="userInfo.distributorApplication == 0" class="waitingValid">
             <div class="icon icon-success"></div>
             <!-- <p>{{userInfo.distributorApplication}}</p> -->
             <p class="title">提交成功</br>请等待管理人员来审核</p>
@@ -53,6 +53,7 @@ import {validPhone} from '@/common/js/validated'
 import Qs from 'qs'
 import { mapGetters } from 'vuex'
 import {ApplyMixin} from '@/common/js/mixin'
+import "../../common/css/media.css"
 export default {
   mixins: [ApplyMixin],
   data() {

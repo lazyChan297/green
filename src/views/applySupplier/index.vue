@@ -11,8 +11,8 @@
                     <input type="text" placeholder="请输入真实姓名">
                 </div>
                 <div class="tr">
-                    <label for="">手机号</label>
-                    <input type="text" placeholder="请输入手机号">
+                    <label for="">手机</label>
+                    <input type="text" placeholder="请输入手机号" class="mobile">
                     <span class="getCode">获取验证码</span>
                 </div>
                 <div class="tr">
@@ -25,6 +25,7 @@
     </div>
 </template>
 <script>
+import "../../common/css/media.css"
 export default {
     data() {
     return {

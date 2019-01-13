@@ -1,6 +1,6 @@
 <template>
     <div>
-      <view-list @select="selectItem" :list="list" v-if="list"></view-list>
+      <view-list @select="selectItem" :list="list" v-if="list.length>0"></view-list>
       <div v-else>
         <img src="../../common/images/empty.png" alt="" width="176" class="bgimg">
         <p class="desc">暂无任何订单记录～</p>
@@ -19,7 +19,8 @@ export default {
     
   },
   mounted() {
-    this.getlist()
+    let status = this.$route.meta.type
+    this.getlist(status)
   },
   methods: {
     // 查看订单详情
@@ -27,10 +28,11 @@ export default {
       this.$router.push(`/orderDetail/${item.orderNo}`)
     },
     // 获取订单列表
-    getlist(status = '') {
-      this.$axios.get('/orders/all', { 
-        params: {status: status}
-      }).then(res => {
+    getlist(status) {
+      status = status === undefined ? 'all' : status
+      let url = '/orders/' + status
+      console.log(url)
+      this.$axios.get(url).then(res => {
         if (res.status === 1) {
           this.list = res.data
         } 
@@ -40,6 +42,7 @@ export default {
   watch: {
     $route() {
         let status = this.$route.meta.type
+        console.log(this.$route.meta.type,'....')
         this.getlist(status)
     }
   },

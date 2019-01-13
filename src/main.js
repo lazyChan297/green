@@ -26,9 +26,9 @@ if (process.env.NODE_ENV === 'development') {
   global.serverHost = ''
 } else {
   // 生产服务器
-  // global.serverHost = "https://caomeng.me"
+  global.serverHost = "https://sy.caomeng.me"
   // 测服务器
-  global.serverHost = "https://ceshi100.caomeng.me"
+  // global.serverHost = "https://ceshi100.caomeng.me"
 }
 
 // 临时token

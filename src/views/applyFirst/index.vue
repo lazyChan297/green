@@ -1,15 +1,15 @@
 <template>
     <div class="applyFirst-wrapper">
-        <div class="disable" v-if="userInfo.agentApplication==''">
+        <!-- <div class="disable" v-if="userInfo.agentApplication==''">
             <img src="../../common/images/561547027740_.pic_hd.jpg" alt="" class="bgimg">
             <div class="desc-container">
                 <p class="desc">对不起，您还未购买任何一款绿色资产产品，不符合代理商申请条件！请您先去购买。</p>
             </div>
             <router-link to="/" class="submit" tag="div">去购买</router-link>
-        </div>
-        <div class="waitingValid" v-else-if="userInfo.agentApplication==0">
+        </div> -->
+        <div class="waitingValid" v-if="userInfo.agentApplication==0">
             <div class="icon icon-success"></div>
-            申请中
+            <p class="title">提交成功</br>请等待管理人员来审核</p>
         </div>
         <div class="available" v-else>
             <div class="header">
@@ -50,6 +50,7 @@
 <script>
 import { XAddress} from 'vux'
 import {ApplyMixin} from '@/common/js/mixin'
+import "../../common/css/media.css"
 import Qs from 'qs'
 export default {
   mixins: [ApplyMixin],
@@ -92,10 +93,18 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+  @import "../../common/stylus/variable.styl"
   #app
     height initial
     .applyFirst-wrapper
         padding-bottom 10px
+        .waitingValid
+            padding-top 60px
+            .title
+                color $green
+                font-size 18px
+                text-align center
+                line-height 28px
         .disable
             .bgimg
                 width 100%

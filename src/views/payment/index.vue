@@ -1,6 +1,6 @@
 <template>
     <div class="payment-wrapper">
-        <div class="userInfo">
+        <div class="userInfo" @click="chooseAddress">
             <div class="icon icon-location"></div>
             <div class="text">
                 <p class="user">
@@ -43,6 +43,26 @@
             </div>
     </div>
 </template>
+<script>
+import {mapGetters} from 'vuex'
+export default {
+ methods: {
+    chooseAddress() {
+        this.$wechat.openAddress({
+            success: res => {
+                console.log(res)
+            }
+        })
+    }
+ },
+ computed: {
+   ...mapGetters([
+       'userInfo'
+   ])
+ }
+}
+</script>
+
 <style lang="stylus" scoped>
     @import "../../common/stylus//variable.styl"
     .userInfo

@@ -1,7 +1,7 @@
 <template>
     <div class="index-wrapper">
         <div class="index-container">
-          <section>
+          <!-- <section>
             <p class="title">绿色资产</p>
             <router-link class="green-asstes" :to="{path:`/goods/${assets.id}`}">
               <img :src="assets.img" alt="" width="100" height="100">
@@ -13,7 +13,7 @@
                 </div>
               </div>
             </router-link>
-          </section>
+          </section> -->
           <section>
               <p class="title">一县一品</p>
               <ul class="greenGoods">
@@ -51,11 +51,14 @@ export default {
         if (res.status === 1) {
           let goods = res.data.goods, ret = []
           goods.forEach((item, index) => {
-            if (item.type == 1) {
-              this.assets = item
-            } else {
+            if (item.type != 1) {
               ret.push(item)
             }
+            // if (item.type == 1) {
+            //   this.assets = item
+            // } else {
+            //   ret.push(item)
+            // }
           })
           this.goods = ret
           console.log(this.goods)

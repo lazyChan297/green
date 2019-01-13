@@ -68,7 +68,7 @@ export default new Router({
           component: () => import('@/views/orderList/index'),
           meta: {
             title: '订单',
-            type: ''
+            type: 'all'
           }
         },
         { path: 'waitFH', 
@@ -76,7 +76,7 @@ export default new Router({
           component: () => import('@/views/orderList/index'),
           meta: {
             title: '订单',
-            type: 1
+            type: 'unshipped'
           }
         },
         { path: 'waitSH', 
@@ -84,7 +84,7 @@ export default new Router({
           component: () => import('@/views/orderList/index'),
           meta: {
             title: '订单',
-            type: 2
+            type: 'shipped'
           }
         },
         { path: 'waitPJ', 
@@ -92,7 +92,7 @@ export default new Router({
           component: () => import('@/views/orderList/index'),
           meta: {
             title: '订单',
-            type: 3
+            type: 'all'
           }
         },
         { path: 'complete', 
@@ -100,7 +100,7 @@ export default new Router({
           component: () => import('@/views/orderList/index'),
           meta: {
             title: '订单',
-            type: 4
+            type: 'done'
           }
         },
       ]
