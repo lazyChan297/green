@@ -3,7 +3,7 @@
         <div class="orderItem" @click="selectItem(item)" v-for="(item,index) in list">
             <div class="status">
                 <span>状态</span>
-                <span>待发货</span>
+                <span>{{getStatus(item.status)}}</span>
             </div>
             <div class="goods" v-for="(goods,gindex) in item.goods">
                 <img :src="goods.img" alt="" width="60" height="60px">
@@ -15,10 +15,10 @@
                     </p>
                 </div>
             </div>
-            <div class="group">
+            <!-- <div class="group">
                 <button class="gray">查看物流</button>
                 <button class="green">确认收获</button>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -32,6 +32,17 @@ export default {
   methods: {
     selectItem(item) {
       this.$emit('select', item)
+    },
+    getStatus(s) {
+      if(s == 1) {
+        return '已完成'
+      } else if(s== 2) {
+        return '待发货'
+      } else if (s == 3) {
+        return '待收货'
+      } else {
+        return '待评价'
+      }
     }
   }
 }

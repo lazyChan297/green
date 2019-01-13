@@ -1,9 +1,9 @@
 <template>
     <div class="cart-wrapper">
         <div class="cart-container" v-if="!isEmpty">
-          <checker selected-item-class="active" default-item-class="demo1-item" type="checkbox" @on-change="checkGoods" v-model="selectedList">
-            <checker-item v-for="(item,index) in goodslist" :key="index" :value="item">
-              <!-- <div class="icon icon-check"></div> -->
+          <div class="vux-checker-box">
+            <div v-for="(item,index) in goodslist" :key="index" :value="item" @click="checkClick(index)" class="vux-checker-item">
+              <div class="icon icon-check" :class="{'active': item.checked}"></div>
               <div class="img">
                   <img :src="item.goodsImg" width="85" height="85">
               </div>
@@ -14,12 +14,12 @@
                   <cart-control @add="addcart(item)" @minus="minuscart(item)" :item="item"></cart-control>
                 </div>
               </div>
-            </checker-item>
-          </checker>
+            </div>
+          </div>
           <div class="control">
-            <!-- <div class="checkAll" :class="{'isCheckall':isCheckall}" @click="checkAll"><span class="icon icon-check"></span><span>全选</span></div> -->
+            <div class="checkAll" :class="{'isCheckall':isCheckall}" @click="checkAll"><span class="icon icon-check"></span><span>全选</span></div>
             <div class="total">合计：<span class="green">¥{{total}}</span></div>
-            <div class="submit">结算</div>
+            <div class="submit" @click="submit">结算</div>
           </div>
         </div>
         <div class="cart-empty" v-else>
@@ -33,6 +33,7 @@
 import FooterNav from '@/components/FooterNav/index'
 import CartControl from '@/components/cartcontrol/index'
 import { Checker, CheckerItem } from 'vux'
+import Qs from 'qs'
 export default {
   data() {
     return {
@@ -47,10 +48,10 @@ export default {
   },
   computed: {
     total() {
+      console.log('..')
       let total = 0, list = this.goodslist
       list.forEach((item, index) => {
-        if (item.quantity >= 1) {
-          console.log(item.quantity)
+        if (item.quantity >= 1 && item.checked) {
           total += item.quantity * item.goodsPrice
         }
       })
@@ -62,38 +63,76 @@ export default {
       this.$axios.get('/cart').then(res => {
         if (res.status === 1) {
           // console.log()
-          if (!res.data) {
+          if (!res.data.goods.length) {
             this.isEmpty = true
           }
-          this.goodslist = res.data.goods
           let goodslist = res.data.goods, ret = []
           goodslist.forEach((item,index) => {
+            item.checked = true
             ret.push(item)
           })
           this.selectedList = ret
+          this.goodslist = ret
           
         }
       })
     },
-    checkGoods(list) {
-      if (list.length === 0) {
-        this.isCheckall = false
-        console.log('.')
-        return
-      }
-      console.log(list)
-    },
     // 是否全选
     checkAll() {
-      
+      this.isCheckall = !this.isCheckall
+      let goodslist = this.goodslist
+      goodslist.forEach((item, index) => {
+        item.checked = this.isCheckall
+      })
+    },
+    checkClick(index) {
+      this.goodslist[index].checked = !this.goodslist[index].checked
+      if (!this.goodslist[index].checked) {
+        this.isCheckall = false
+      }
+    },
+    submit() {
+      let selected = [], goodslist = this.goodslist
+      goodslist.forEach((item, index) => {
+        if (item.quantity >= 1) {
+          selected.push(item)
+        }
+      })
+      selected = JSON.stringify(selected)
+      let params = Qs.stringify({cart:selected})
+    },
+    addToCart() {
+      let selected = [], goodslist = this.goodslist
+      goodslist.forEach((item, index) => {
+          selected.push(item)
+      })
+      let _selected = JSON.stringify({goods:selected})
+      let params = Qs.stringify({cart:_selected})
+      this.$axios.post('/cart', params).then((res) => {
+          if (res.status === 1) {
+              this.getCart()
+          }
+      })
     },
     addcart(goods) {
       goods.quantity = goods.quantity + 1
     },
     minuscart(goods) {
+      let that = this
       if (goods.quantity == 0) {
         return
-      } else {
+      } else if (goods.quantity - 1 == 0 ) {
+        this.$vux.confirm.show({
+          title: '提示信息',
+          content: '确定要删除吗？',
+          onConfirm () {
+            goods.quantity = goods.quantity - 1
+            // console.log(that.goodslist)
+            that.addToCart()
+          }
+        })
+      }
+      else {
         goods.quantity = goods.quantity - 1
       }
       
@@ -107,7 +146,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
+<style lang="stylus" scoped>
   @import "../../common/stylus/variable.styl"
   .cart-empty
     padding-top 107px

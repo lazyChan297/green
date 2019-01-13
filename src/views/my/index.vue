@@ -29,7 +29,7 @@
                 <div class="icon icon-dpj"></div>
                 <span>待评价</span>
               </router-link>
-              <router-link to="/order/complet" tag="div" class="statu">
+              <router-link to="/order/complete" tag="div" class="statu">
                 <div class="icon icon-ywc"></div>
                 <span>已完成</span>
               </router-link>
