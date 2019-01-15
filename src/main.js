@@ -8,9 +8,11 @@ import store from '@/store/index'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import FastClick from 'fastclick'
+import VueClipboard from 'vue-clipboard2'
 import NProgress from 'nprogress'
 import { checkToken } from '@/common/js/utils'
 import 'nprogress/nprogress.css'// Progress 进度条样式
+import Qs from 'qs'
 import { AlertPlugin, AjaxPlugin, ConfirmPlugin, ToastPlugin, LoadingPlugin } from 'vux'
 import "./common/stylus/index.styl"
 
@@ -26,13 +28,13 @@ if (process.env.NODE_ENV === 'development') {
   global.serverHost = ''
 } else {
   // 生产服务器
-  global.serverHost = "https://sy.caomeng.me"
+  // global.serverHost = "https://sy.caomeng.me"
   // 测服务器
-  // global.serverHost = "https://ceshi100.caomeng.me"
+   global.serverHost = "https://ceshi100.caomeng.me"
 }
 
-// 临时token
-const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiaWF0IjoxNTQ3MDAxOTI5LCJuYmYiOjE1NDcwMDE5MjksImV4cCI6MTU0Nzg2NTkyOX0.XtLttvbK_hbW5HOGq6WQeUQfyLMTpfZyPxGJ6hECiVQ'
+// copy
+Vue.use(VueClipboard)
 
 // token
 let url = window.location.href
@@ -79,6 +81,13 @@ NProgress.inc(0.2)
 NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })
 
 router.beforeEach((to, from, next) => {
+  // 获取微信jssdk配置项
+  let params = Qs.stringify({url: encodeURI(location.href.split('#')[0])})
+  Vue.prototype.$axios.post('/jsconfig', params).then(res => {
+    if (res.status == 1) {
+      Vue.wechat.config(res.data.jsConfig)
+    }
+  })
   NProgress.start()
   if (to.meta.title) {
     document.title = to.meta.title

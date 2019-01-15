@@ -1,10 +1,10 @@
 <template>
     <div class="videos-wrapper">
-        <div class="video-container" v-for="(item, index) in videos" :key="index" :data-src="playVideo(item)" v-if="item.video">
+        <div class="video-container" v-for="(item, index) in videos" :key="index">
             <video-player
                 class="vjs-custom-skin"
                 ref="videoPlayer"
-                :options="playerOptions">
+                :options="item.playerOptions">
             </video-player>
             <p class="">
                 <span class="desc">{{item.title}}</span>
@@ -20,24 +20,7 @@ import '@/common/css/video-skin.css'
 export default {
   data() {
     return {
-      videos: [],
-      playerOptions: {
-        muted: false,
-        x5VideoPlayerFullscreen: true,
-        language: 'en',
-        playbackRates: [1.0, 2.0],
-        width: '1080',
-        height: '720',
-        usingNativeControls: false,
-        nativeControlsForTouch: false,
-        preload: 'auto',
-        aspectRatio:"16:9",
-        sources: [{
-          type: "video/mp4",
-          src: null
-        }],
-        poster: null
-      }
+      videos: []
     }
   },
   mounted() {
@@ -50,13 +33,30 @@ export default {
     getVideos() {
       this.$axios.get('/discovery/videos').then(res => {
         if (res.status === 1) {
-          this.videos = res.data.videos
+          let videos = res.data.videos, ret = []
+          videos.forEach((item, index) => {
+            let playerOptions = {
+              muted: false,
+              x5VideoPlayerFullscreen: true,
+              language: 'en',
+              playbackRates: [1.0, 2.0],
+              width: '1080',
+              height: '720',
+              usingNativeControls: false,
+              nativeControlsForTouch: false,
+              preload: 'auto',
+              aspectRatio:"16:9",
+              sources: [{
+                type: "video/mp4",
+                src: item.video
+              }],
+              poster: item.cover
+            }
+            ret.push({playerOptions:playerOptions, title: item.title})
+          })
+          this.videos = ret
         }
       })
-    },
-    playVideo(item) {
-      this.playerOptions.sources[0].src = item.video
-      this.playerOptions.poster = item.cover
     }
   }
 }
@@ -65,6 +65,8 @@ export default {
     .video-container
         margin-bottom 10px
         background #fff
+        img 
+          width 100%
     .desc
         color #4a4a4a
         font-size 12px

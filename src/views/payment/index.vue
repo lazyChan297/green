@@ -2,55 +2,120 @@
     <div class="payment-wrapper">
         <div class="userInfo" @click="chooseAddress">
             <div class="icon icon-location"></div>
-            <div class="text">
+            <div class="text" v-if="addressData">
                 <p class="user">
-                    zhangsan,18677485124
+                    {{addressData.reciever + ', ' + addressData.mobile}}
                 </p>
                 <p class="addr">
-                        广西壮族自治区 南宁市 青秀区 民族大道131号会展中心航洋城
+                    {{addressData.details}}
                 </p>
+            </div>
+            <div class="text" v-else>
+                <p class="empty">请选择地址</p>
             </div>
             <div class="icon icon-link"></div>
         </div>
         <div class="form">
             <p class="title tr"><span>商品</span></p>
-            <div class="goods">
-                <img src="../../common/images/goods2.jpg" alt="" width="60" height="60">
+            <div class="goods" v-for="(item,index) in cart.goods">
+                <img :src="item.goodsImg" alt="" width="60" height="60">
                 <div>
-                    <div class="name">name</div>
+                    <div class="name">{{item.goodsName}}</div>
                     <div>
-                        <span class="price">¥25.00</span>
-                        <span class="num">X1</span>
+                        <span class="price">¥{{item.goodsPrice}}</span>
+                        <span class="num">X{{item.quantity}}</span>
                     </div>
                 </div>
             </div>
             <div class="tr">
                 <span>总计</span>
-                <span>¥25.00</span>
+                <span>¥{{cart.marketPriceSum}}</span>
             </div>
-            <div class="tr">
+            <!-- <div class="tr">
                 <span>运费</span>
                 <span>¥0.00</span>
-            </div>
+            </div> -->
             <div class="tr">
                 <span>实付款</span>
-                <span class="green">¥25.00</span>
+                <span class="green">¥{{cart.marketPriceSum}}</span>
             </div>
-            
         </div>
-        <div class="submit">
+        <div class="submit" @click="prepay">
                 去支付
             </div>
     </div>
 </template>
 <script>
 import {mapGetters} from 'vuex'
+import Qs from 'qs'
+import {Toast} from 'vux'
 export default {
+ data() {
+    return {
+        addressData: null,
+        cart: {}
+    }
+ },
+ mounted() {
+    this.getCart()
+ },
  methods: {
+    prepay() {
+        if (!this.addressData) {
+            this.$vux.toast.show({
+                text: '请选择地址',
+                type: 'warn'
+            })
+            return 
+        }
+        let addr = JSON.stringify({id: this.addressData.id})
+        let params = Qs.stringify({addr})
+        this.$axios.post('/cart/getPayArgs', params).then(res => {
+            this.$wechat.chooseWXPay({
+            timestamp: res.data.payargs.timeStamp,
+            nonceStr: res.data.payargs.nonceStr +"",
+            package: res.data.payargs.package +"",
+            signType: res.data.payargs.signType +"",
+            paySign: res.data.payargs.paySign +"",
+            success: result => {
+              if (result.errMsg == "chooseWXPay:ok") {
+                window.location.href = global.serverHost + '/#/order/waitFH'
+              }
+            },
+            cancel: result => {
+              removeStore('userSn')
+            }
+          })
+        })
+    },
     chooseAddress() {
+        let that = this
         this.$wechat.openAddress({
             success: res => {
-                console.log(res)
+                let addrInfo = JSON.stringify({
+                    userName: res.userName,
+                    telNumber: res.telNumber,
+                    provinceName: res.provinceName,
+                    cityName: res.cityName,
+                    countyName: res.countryName,
+                    detail: res.detailInfo,
+                    postalCode: res.postalCode
+                })
+                let params = Qs.stringify({addrInfo})
+                that.$axios.post('/users/addAddr', params).then(res => {
+                    // alert(res)
+                    if (res.status == 1) {
+                        that.addressData = res.data.addr
+                    }
+                })
+            }
+        })
+    },
+    getCart() {
+        this.$axios.get('/cart').then(res => {
+            if (res.status === 1) {
+                this.cart = res.data
+                console.log(this.cart)
             }
         })
     }
@@ -72,6 +137,10 @@ export default {
         border-bottom 2px dashed $green
         padding 15px
         margin-bottom 12px
+        .text
+            flex 1
+        .empty
+            color $green
         .user
             color #4a4a4a
             font-size 14px

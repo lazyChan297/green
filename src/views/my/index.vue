@@ -8,7 +8,7 @@
                   <p class="name">{{userInfo.nickName}}</p>
                   <p class="desc">我的身份： 普通客户</p>
               </div>
-              <div class="icon icon-setting"></div>
+              <router-link class="icon icon-setting" to="/setting"></router-link>
             </div>
           </div>
           <section class="order">
@@ -56,7 +56,7 @@
             <div>
               <img src="../../common/images/yaoqing.png" width="54" alt="">
               <p class="desc">邀请好友</p>
-              <p class="invite">立即邀请</p>
+              <router-link tag="p" class="invite" to="/marketing/join">立即邀请</router-link>
             </div>
           </section>
         </div>

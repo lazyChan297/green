@@ -17,6 +17,7 @@
             </div>
           </div>
           <div class="control">
+            <div class="checkAll" :class="{'isCheckall':isCheckall}"><div class="icon icon-check" @click="checkAll"></div>全选</div>
             <div class="total">合计：<span class="green">¥{{total}}</span></div>
             <div class="submit" @click="submit">结算</div>
           </div>
@@ -47,7 +48,7 @@ export default {
   },
   computed: {
     total() {
-      console.log('..')
+
       let total = 0, list = this.goodslist
       list.forEach((item, index) => {
         if (item.quantity >= 1 && item.checked) {
@@ -62,8 +63,9 @@ export default {
       this.$axios.get('/cart').then(res => {
         if (res.status === 1) {
           // console.log()
-          if (!res.data.goods.length) {
+          if (res.info === '购物车为空') {
             this.isEmpty = true
+            return false
           }
           let goodslist = res.data.goods, ret = []
           goodslist.forEach((item,index) => {
@@ -99,6 +101,7 @@ export default {
       })
       selected = JSON.stringify(selected)
       let params = Qs.stringify({cart:selected})
+      this.$router.push('/payment')
     },
     addToCart() {
       let selected = [], goodslist = this.goodslist

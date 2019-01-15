@@ -55,6 +55,22 @@ export default new Router({
       }
     },
     {
+      path: '/setting',
+      name: 'setting',
+      component: () => import('@/views/setting/index'),
+      meta: {
+        title: '个人设置'
+      }
+    },
+    {
+      path: '/bindPhone',
+      name: 'bindPhone',
+      component: () => import('@/views/bindPhone/index'),
+      meta: {
+        title: '绑定手机'
+      }
+    },
+    {
       path: '/order',
       name: 'order',
       component: () => import('@/views/order/index'),
@@ -151,6 +167,30 @@ export default new Router({
       component: () => import('@/views/videos/index'),
       meta: {
         title: '视频'
+      }
+    },
+    {
+      path: '/marketing/join',
+      name: 'marketingJoin',
+      component: () => import('@/views/marketingJoin/index'),
+      meta: {
+        title: '邀请好友'
+      }
+    },
+    {
+      path: '/marketing/confirm',
+      name: 'marketingConfirm',
+      component: () => import('@/views/marketingConfirm/index'),
+      meta: {
+        title: '推广邀请'
+      }
+    },
+    {
+      path: '/express/:no',
+      name: 'express',
+      component: () => import('@/views/express/index'),
+      meta: {
+        title: '物流详情'
       }
     }
   ]

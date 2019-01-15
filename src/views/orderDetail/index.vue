@@ -5,14 +5,14 @@
             <span>待发货</span>
         </p>
         <div class="express-wrapper">
-            <div class="express">
+            <router-link class="express" v-if="details.lastExpressInfo && details.lastExpressInfo.context" :to="{path:`/express/${details.orderNo}`}">
                 <div class="icon icon-express"></div>
                 <div class="text">
-                    <p class="green">已签收</p>
-                    <p class="date">2017-10-1 10:10:00</p>
+                    <p class="green">{{details.lastExpressInfo.context}}</p>
+                    <p class="date">{{details.lastExpressInfo.updatedAt}}</p>
                 </div>
                 <div class="icon icon-link"></div>
-            </div>
+            </router-link>
         </div>
         <div class="userInfo">
             <div class="icon icon-location"></div>
@@ -43,7 +43,9 @@
             </div>
         </div>
         <div class="orderInfo">
-            <p><span>订单号：{{details.orderNo}}</span><span class="copy">复制</span></p>
+            <p><span>订单号：{{details.orderNo}}</span>
+                <span class="copy" v-clipboard:copy="details.orderNo" v-clipboard:success="onCopy">复制</span>
+            </p>
             <p><span>下单时间:{{details.orderCreatedAt}}</span></p>
         </div>
     </div>
@@ -69,6 +71,13 @@ export default {
                 this.details = res.data
             }
         })
+    },
+    onCopy() {
+        this.$vux.toast.show({
+        text: '复制成功!',
+        type: 'success',
+        position: 'middle'
+      })
     }    
   }
 }

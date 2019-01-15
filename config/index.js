@@ -21,8 +21,8 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    //host: '192.168.3.198', // can be overwritten by process.env.HOST
-    host: 'localhost',
+    host: '192.168.3.198', // can be overwritten by process.env.HOST
+    // host: 'localhost',
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -51,7 +51,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: String(parseInt(new Date().getTime() / 1000)),
     assetsPublicPath: '/',
 
     /**

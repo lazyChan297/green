@@ -3,18 +3,17 @@
         <div class="index-container">
           <!-- swiper -->
           <div class="swiper-container videoSwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide video-slide">
-                  <img src="../../common/images/banner/banner01.jpg" alt="">
-                </div>
-                <div class="swiper-slide video-slide">
-                  <img src="../../common/images/banner/banner02.jpg" alt="">
-                </div>
-                <div class="swiper-slide video-slide">
-                    <img src="../../common/images/banner/banner03.jpg" alt="">
-                </div>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide video-slide" v-for="(item) in banners">
+                <img :src="item" alt="">
               </div>
             </div>
+          </div>
+          <!-- <swiper :options="swiperOption" v-if="banners">
+              <swiper-slide v-for="(item,index) in banners" :key="index">
+                  <img :src="item" alt="" class="slideImg">
+              </swiper-slide>
+          </swiper> -->
           <section>
             <p class="title">绿色资产</p>
             <div class="green-asstes">
@@ -51,21 +50,42 @@
 import FooterNav from '@/components/FooterNav/index'
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   data() {
     return {
       assets: {},
-      goods: []
+      goods: [],
+      banners: [],
+      // 幻灯片的配置项
+      swiperOption: {
+            notNextTick: true,
+            pagination: '.swiper-pagination',
+            paginationType : 'fraction',
+            paginationClickable: true,
+            loop: false,
+            autoplay: 0,
+            autoplayDisableOnInteraction: false      
+        }
     }
   },
   mounted() {
       this.getIndex()
-      this._inirSwiper()
   },
   methods: {
     getIndex() {
       this.$axios.get('/index').then((res) => {
         if (res.status === 1) {
+          this.banners = res.data.banners
+          var mySwiper = new Swiper('.videoSwiper', {
+            observer:true,//修改swiper自己或子元素时，自动初始化swiper    重要
+            observeParents:true,//修改swiper的父元素时，自动初始化swiper  重要
+            autoplay:false,
+            loop:true,
+            centeredSlides: true,
+            spaceBetween: 10,
+            slidesPerView: 'auto'
+          })
           let goods = res.data.goods, ret = []
           goods.forEach((item, index) => {
             //if (item.type != 1) {
@@ -78,19 +98,8 @@ export default {
              }
           })
           this.goods = ret
-          console.log(this.goods)
-          console.log(this.assets)
         }
       })
-    },
-    _inirSwiper() {
-      var mySwiper = new Swiper('.videoSwiper', {
-          autoplay:false,
-          loop:true,
-          centeredSlides: true,
-          spaceBetween: 10,
-          slidesPerView: 'auto'
-        })
     }
   },
   components: {

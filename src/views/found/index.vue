@@ -6,12 +6,12 @@
               <span class="title">视频</span>
               <router-link class="more" to="/videos" tag="span">查看更多</router-link></p>
             <div>
-              <div class="video" v-for="(item, index) in videos" :key="index" :data-src="playVideo(item)" v-if="index<2 && item.video">
+              <div class="video" v-for="(item, index) in videos" :key="index">
                 <!-- <img :src="item.cover" alt="" v-if="!playerOptions.sources[0].src"> -->
                 <video-player
                   class="vjs-custom-skin"
                   ref="videoPlayer"
-                  :options="playerOptions">
+                  :options="item.playerOptions">
                 </video-player>
                 <p class="desc">{{item.title}}</p>
               </div>             
@@ -79,7 +79,33 @@ export default {
     getVideo() {
       this.$axios.get('/discovery/videos').then((res) => {
         if (res.status === 1) {
-          this.videos = res.data.videos
+          let videos = res.data.videos, ret = []
+          videos.forEach((item, index) => {
+            if (index > 1) {
+              return 
+            }
+            ret.push({
+              playerOptions: {
+                muted: false,
+                x5VideoPlayerFullscreen: true,
+                language: 'en',
+                playbackRates: [1.0, 2.0],
+                width: '1080',
+                height: '720',
+                usingNativeControls: false,
+                nativeControlsForTouch: false,
+                preload: 'auto',
+                aspectRatio:"16:9",
+                sources: [{
+                  type: "video/mp4",
+                  src: item.video
+                }],
+                poster: item.cover
+              },
+              title: item.title
+            })
+          })
+          this.videos = ret
         }
       })
     },
