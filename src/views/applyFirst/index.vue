@@ -7,7 +7,7 @@
             </div>
             <router-link to="/" class="submit" tag="div">去购买</router-link>
         </div> -->
-        <div class="waitingValid" v-if="userInfo.agentApplication==0">
+        <div class="waitingValid" v-if="userInfo.agentApplication ==0">
             <div class="icon icon-success"></div>
             <p class="title">提交成功</br>请等待管理人员来审核</p>
         </div>
@@ -19,7 +19,7 @@
             <div class="form">
                 <div class="tr">
                     <label for="">代理级别</label>
-                    <input type="text" placeholder="县级" disabled>
+                    <input type="text" placeholder="县级" disabled class="level">
                     <span class="tip">目前仅开放县级代理申请</span>
                 </div>
                 <div class="tr">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="tr">
                     <label for="">手机号</label>
-                    <input type="text" placeholder="请输入手机号" v-model="mobile">
+                    <input type="text" placeholder="请输入手机号" v-model="mobile" class="mobile">
                     <span class="getCode" :class="{'waiting':waiting}" @click="getCode">{{getCodeTxt}}</span>
                 </div>
                 <div class="tr">
@@ -116,7 +116,7 @@ export default {
                 border-radius 8px
             .desc
                 color #769FFA
-                font-size 12px
+                font-size 14px
                 text-align center
                 line-height 20px
         .available

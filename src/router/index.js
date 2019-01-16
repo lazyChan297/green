@@ -39,15 +39,15 @@ export default new Router({
       }
     },
     {
-      path: '/goods/:id',
-      name: 'goods',
+      path: '/goodsDetail/:id',
+      name: 'goodsDetail',
       component: () => import('@/views/goodsDetail/index'),
       meta: {
         title: '商品详情'
       }
     },
     {
-      path: '/payment',
+      path: '/:type/payment',
       name: 'payment',
       component: () => import('@/views/payment/index'),
       meta: {

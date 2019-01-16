@@ -25,7 +25,7 @@
                   <p class="articleTitle">{{item.title}}</p>
                   <p class="date">2019年 01月09日 12:00</p>
                 </div>
-                <img :src="item.cover" alt="" width="80">
+                <div class="imgBox"><img :src="item.cover" alt=""></div>
               </router-link>
             </ul>
           </section>
@@ -142,6 +142,8 @@ export default {
       transform translateY(-100%)
   section
     padding 0 15px
+    &:last-child
+      margin-top 10px
     &>div
       display flex
       .video
@@ -162,10 +164,14 @@ export default {
       height 80px
       border-radius 8px
       margin-bottom 10px
-      img
+      .imgBox
+        width 80px
+        overflow hidden
         border-top-right-radius 8px
         border-bottom-right-radius 8px
-      &>div
+        img  
+          height 80px
+      &>div:first-child
         flex 1
         color #4a4a4a
         padding 10px
@@ -180,7 +186,7 @@ export default {
         height 34px
         margin-bottom 12px
       .date
-        font-size 10px
+        font-size 12px
   .title-container
     display flex
     justify-content space-between
@@ -188,7 +194,7 @@ export default {
   .title
     color $black
     font-weight bold
-    font-size 15px
+    font-size 16px
     line-height 40px
   .more
     color #b2b2b2

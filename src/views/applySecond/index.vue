@@ -33,7 +33,7 @@
                     </div>
                     <div class="tr">
                         <label for="">手机号</label>
-                        <input type="number" placeholder="请输入手机号" v-model="mobile">
+                        <input type="number" placeholder="请输入手机号" v-model="mobile" class="mobile">
                         <span class="getCode" :class="{'waiting':waiting}" @click="getCode">{{getCodeTxt}}</span>
                     </div>
                     <div class="tr">
@@ -129,7 +129,7 @@ export default {
                 border-radius 8px
             .desc
                 color $green
-                font-size 12px
+                font-size 14px
                 text-align center
                 line-height 20px
         .available

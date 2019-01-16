@@ -32,12 +32,12 @@ export default {
         padding 9px 30px
         .title
             color #030303
-            font-size 16px
+            font-size 18px
             font-weight bold
             margin-bottom 5px
             line-height 22px
         .desc
             color #b2b2b2
-            font-size 10px
+            font-size 12px
             margin-bottom 15px
 </style>

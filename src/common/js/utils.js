@@ -22,7 +22,7 @@ export function checkToken(url) {
       console.log(global.serverHost)
       console.log(global.serverHost + '/wechat/getUserInfo?url_befor_login'+ encodeURIComponent(url))
     } 
-  } else if (url != pageUrl) {
+  } else if (url != pageUrl && url != global.serverHost + '/newCart/pay/#/goods/payment/') {
     window.location.href = pageUrl
   }
   if (getUrlParms('token')) {

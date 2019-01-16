@@ -19,7 +19,9 @@
                     <p class="text">首页</p>
                 </router-link>
                 <router-link to="/cart" tag="div">
-                    <div class="icon icon-cart"></div>
+                    <div class="icon icon-cart">
+                        <span class="num">{{cartLen}}</span>
+                    </div>
                     <p class="text">购物车</p>
                 </router-link>
                 <div class="cart" @click="addToCart">
@@ -58,6 +60,7 @@
 <script>
 import CartControl from '@/components/cartcontrol/index'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import {mapGetters, mapActions} from 'vuex'
 import Qs from 'qs'
 export default {
     data() {
@@ -85,6 +88,11 @@ export default {
     },
     mounted() {
         this.getGoods()
+    },
+    computed: {
+      ...mapGetters([
+          'cartLen'
+      ])
     },
     methods: {
         add(goods) {
@@ -115,6 +123,7 @@ export default {
             let params = Qs.stringify({cart:goods})
             this.$axios.post('/cart', params).then((res) => {
                 if (res.status === 1) {
+                    this.updateCartLen(res.data.goods.length)
                     if (flag) {
                         this.$vux.toast.show({
                             text: res.info,
@@ -129,7 +138,10 @@ export default {
         // 购买
         submit() {
             // this.$router.push('/payment')
-        }
+        },
+        ...mapActions({
+            updateCartLen: 'saveCartLen'
+        })
     }
 }
 </script>
@@ -158,24 +170,24 @@ export default {
         .green
             color $green
         .price
-            color $green
+            color #FF6659
             font-size 20px
             font-weight bold
             background #fff
             padding-left 15px
-            line-height 30px
+            line-height 40px
         .goodsName
             color $black
             font-size 14px
             font-weight bold
             padding-left 15px
             background #fff
-            line-height 30px
+            line-height 40px
         .title
-            font-size 14px
+            font-size 16px
             color $black
             background #fff
-            line-height 30px
+            line-height 40px
             padding-left 15px
             margin-top 10px
         .control
@@ -251,5 +263,19 @@ export default {
             right 0
             background rgba(0,0,0,0.3)
             z-index -1
-            
+        .icon
+            position relative
+            .num
+                background #FF6659
+                position absolute
+                display block
+                width 15px
+                height 15px
+                line-height 15px
+                border-radius 50%
+                color #fff
+                top -5px
+                right -8px
+                text-align center
+                font-size 12px
 </style>

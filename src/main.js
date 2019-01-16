@@ -28,9 +28,9 @@ if (process.env.NODE_ENV === 'development') {
   global.serverHost = ''
 } else {
   // 生产服务器
-  // global.serverHost = "https://sy.caomeng.me"
+  global.serverHost = "https://sy.caomeng.me"
   // 测服务器
-   global.serverHost = "https://ceshi100.caomeng.me"
+  //  global.serverHost = "https://ceshi100.caomeng.me"
 }
 
 // copy
@@ -66,7 +66,12 @@ instance.defaults.headers.common['x-access-token'] = global.token
 if (global.token) {
   Vue.prototype.$axios.get('/users/info').then((res) => {
     store.dispatch('saveUserInfo', res.data.userInfo)
-    console.log(store)
+  })
+  Vue.prototype.$axios.get('/cart').then(res => {
+    console.log('cart')
+    if (res.status === 1) {
+      store.dispatch('saveCartLen', res.data.goods.length)
+    }
   })
 }
 

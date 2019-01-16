@@ -18,7 +18,7 @@
           </div>
           <div class="control">
             <div class="checkAll" :class="{'isCheckall':isCheckall}"><div class="icon icon-check" @click="checkAll"></div>全选</div>
-            <div class="total">合计：<span class="green">¥{{total}}</span></div>
+            <div class="total">合计：<span class="red">¥{{total}}</span></div>
             <div class="submit" @click="submit">结算</div>
           </div>
         </div>
@@ -33,6 +33,7 @@
 import FooterNav from '@/components/FooterNav/index'
 import CartControl from '@/components/cartcontrol/index'
 import { Checker, CheckerItem } from 'vux'
+import { mapActions } from 'vuex'
 import Qs from 'qs'
 export default {
   data() {
@@ -62,19 +63,19 @@ export default {
     getCart() {
       this.$axios.get('/cart').then(res => {
         if (res.status === 1) {
-          // console.log()
           if (res.info === '购物车为空') {
             this.isEmpty = true
+            this.updateCartLen(0)
             return false
           }
           let goodslist = res.data.goods, ret = []
+          this.updateCartLen(res.data.goods.length)
           goodslist.forEach((item,index) => {
             item.checked = true
             ret.push(item)
           })
           this.selectedList = ret
           this.goodslist = ret
-
         }
       })
     },
@@ -93,15 +94,32 @@ export default {
       }
     },
     submit() {
-      let selected = [], goodslist = this.goodslist
+      let selected = [], goodslist = this.goodslist, reset = []
       goodslist.forEach((item, index) => {
-        if (item.quantity >= 1) {
-          selected.push(item)
+        if (item.quantity >= 1 && item.checked) {
+          selected.push({goodsId: item.goodsId,quantity:item.quantity})
+        } else {
+          reset.push({goodsId: item.goodsId,quantity:0})
         }
       })
-      selected = JSON.stringify(selected)
-      let params = Qs.stringify({cart:selected})
-      this.$router.push('/payment')
+      
+      if (selected.length === 0) {
+        this.$vux.toast.show({
+          text: '请选择商品',
+          type: 'warn'
+        })
+        return
+      } else {
+        let array = selected.concat(reset)
+        array = JSON.stringify({goods:array})
+        let params = Qs.stringify({cart:array})
+        this.$axios.post('/cart', params).then((res) => {
+          if (res.status === 1) {
+            window.location.href = global.serverHost + '/newCart/pay/#/goods/payment/'
+          }
+        })
+      }
+      
     },
     addToCart() {
       let selected = [], goodslist = this.goodslist
@@ -137,8 +155,10 @@ export default {
       else {
         goods.quantity = goods.quantity - 1
       }
-
-    }
+    },
+    ...mapActions({
+      updateCartLen: 'saveCartLen'
+    })
   },
   components: {
     FooterNav,
@@ -196,7 +216,7 @@ export default {
         width 100%
         justify-content space-between
         .price
-          color $green
+          color #FF6659
           font-weight bold
   .control
     position fixed
@@ -219,8 +239,8 @@ export default {
       text-align right
       font-size 14px
       padding-right 10px
-      .green
-        color $green
+      .red
+        color #FF6659
         font-weight bold
     .submit
       background linear-gradient(180deg,rgba(48,207,30,1) 0%,rgba(24,184,1,1) 100%)

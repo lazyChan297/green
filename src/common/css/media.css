@@ -3,3 +3,9 @@
         width: 100px
     }
 }
+
+@media screen and (max-width: 376px) {
+    .level {
+        width: 50px
+    }
+}

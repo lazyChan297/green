@@ -9,11 +9,6 @@
               </div>
             </div>
           </div>
-          <!-- <swiper :options="swiperOption" v-if="banners">
-              <swiper-slide v-for="(item,index) in banners" :key="index">
-                  <img :src="item" alt="" class="slideImg">
-              </swiper-slide>
-          </swiper> -->
           <section>
             <p class="title">绿色资产</p>
             <div class="green-asstes">
@@ -30,13 +25,13 @@
           <section>
               <p class="title">一县一品</p>
               <ul class="greenGoods">
-                <router-link class="goods" :to="{path:`/goods/${item.id}`}" v-for="(item,index) in goods" :key="index">
+                <router-link class="goods" :to="{path:`/goodsDetail/${item.id}`}" v-for="(item,index) in goods" :key="index">
                   <img :src="item.img" alt="">
                   <div>
                     <p class="title">{{item.name}}</p>
                     <div class="sold">
                         <span class="price">¥{{item.price}}</span>
-                        <span class="icon icon-redcart"></span>
+                        <span class="icon icon-redcart" @click.stop.prevent="addToCart(item)"></span>
                       </div>
                   </div>
                 </router-link>
@@ -50,6 +45,8 @@
 import FooterNav from '@/components/FooterNav/index'
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
+import Qs from 'qs'
+import {mapActions} from 'vuex'
 // import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   data() {
@@ -100,7 +97,31 @@ export default {
           this.goods = ret
         }
       })
-    }
+    },
+    // 加入购物车
+    addToCart(goods) {
+      let _goods = JSON.stringify({goods:[{goodsId: goods.id, quantity: goods.quantity }]})
+      let params = Qs.stringify({cart:_goods})
+      this.$axios.post('/cart', params).then((res) => {
+          if (res.status === 1) {
+              this.$vux.toast.show({
+                text: '加入购物车成功～',
+                time: 500,
+                type: 'success'
+              })
+              this.updateCartLen(res.data.goods.length)
+          } else {
+              this.$vux.toast.show({
+                text: res.info,
+                time: 500,
+                type: 'warn'
+              })
+          }
+      })
+    },
+    ...mapActions({
+      updateCartLen: 'saveCartLen'
+    })
   },
   components: {
     FooterNav,
@@ -127,7 +148,7 @@ export default {
       .title
         color $black
         font-weight bold
-        font-size 14px
+        font-size 16px
         line-height 40px
       section
         padding 0 15px
@@ -144,9 +165,10 @@ export default {
           margin-left 10px
           padding-right 10px
           flex 1
-          .title
+          &>.title
             min-height 58px
             line-height 16px
+            
       .greenGoods
         overflow hidden
        .goods
@@ -165,10 +187,11 @@ export default {
         .title
           line-height 20px
           margin 5px 0 10px
+          font-size 14px 
         &>div
           padding 0 5px
       .price
-        color $green
+        color #FF6659
         font-size 16px
         font-weight bold
       .sold

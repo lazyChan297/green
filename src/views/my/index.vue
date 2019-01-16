@@ -55,7 +55,9 @@
           <section class="QRcode">
             <div>
               <img src="../../common/images/yaoqing.png" width="54" alt="">
-              <p class="desc">邀请好友</p>
+              <p class="desc">
+                邀请好友
+              </p>
               <router-link tag="p" class="invite" to="/marketing/join">立即邀请</router-link>
             </div>
           </section>
@@ -116,10 +118,11 @@ export default {
       margin-left 10px
       flex 1
       .name
-        font-size 14px
+        font-size 18px
         margin-bottom 5px
+        font-weight bold
       .desc
-        font-size 10px
+        font-size 12px
   .order
     margin -50px 15px 0
     background #fff
@@ -136,7 +139,7 @@ export default {
         &:firsh-child
           font-size 14px
         &:last-child
-          font-size 10px
+          font-size 12px
     &>div
       display flex
       height 70px
@@ -178,15 +181,15 @@ export default {
     .desc
       flex 1
       color #4a4a4a
-      font-size 12px
+      font-size 14px
       margin-left 10px
     .invite
       background #FF6659
       color #fff
-      font-size 10px
+      font-size 12px
       text-align center
-      width 60
-      line-height 18px
+      width 60px
+      line-height 20px
       border-radius 20px
       padding 0 10px
 </style>

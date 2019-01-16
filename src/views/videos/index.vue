@@ -69,7 +69,7 @@ export default {
           width 100%
     .desc
         color #4a4a4a
-        font-size 12px
-        line-height 30px
+        font-size 14px
+        line-height 40px
         padding 0 15px
 </style>

@@ -37,7 +37,7 @@
             </div> -->
             <div class="tr">
                 <span>实付款</span>
-                <span class="green">¥{{cart.marketPriceSum}}</span>
+                <span class="green">¥{{cart.priceSum}}</span>
             </div>
         </div>
         <div class="submit" @click="prepay">
@@ -56,10 +56,28 @@ export default {
         cart: {}
     }
  },
+ created() {
+    
+ },
  mounted() {
     this.getCart()
  },
+ watch:{
+    $route() {
+        this.getCart()
+    }
+ },
  methods: {
+    getCart() {
+        this.$axios.get('/cart/confirm/').then(res => {
+            if (res.status === 1) {
+                this.addressData = res.data.addr
+                this.cart = res.data.cart
+            } else {
+                this.$router.push('/cart')
+            }
+        })
+    },
     prepay() {
         if (!this.addressData) {
             this.$vux.toast.show({
@@ -71,21 +89,23 @@ export default {
         let addr = JSON.stringify({id: this.addressData.id})
         let params = Qs.stringify({addr})
         this.$axios.post('/cart/getPayArgs', params).then(res => {
-            this.$wechat.chooseWXPay({
-            timestamp: res.data.payargs.timeStamp,
-            nonceStr: res.data.payargs.nonceStr +"",
-            package: res.data.payargs.package +"",
-            signType: res.data.payargs.signType +"",
-            paySign: res.data.payargs.paySign +"",
-            success: result => {
-              if (result.errMsg == "chooseWXPay:ok") {
-                window.location.href = global.serverHost + '/#/order/waitFH'
-              }
-            },
-            cancel: result => {
-              removeStore('userSn')
+            if (res.status === 1) {
+                this.$wechat.chooseWXPay({
+                    timestamp: res.data.payargs.timeStamp,
+                    nonceStr: res.data.payargs.nonceStr +"",
+                    package: res.data.payargs.package +"",
+                    signType: res.data.payargs.signType +"",
+                    paySign: res.data.payargs.paySign +"",
+                    success: result => {
+                        if (result.errMsg == "chooseWXPay:ok") {
+                            window.location.href = global.serverHost + '/#/order/waitFH'
+                        }
+                    },
+                    cancel: result => {
+                        // removeStore('userSn')
+                    }
+                })
             }
-          })
         })
     },
     chooseAddress() {
@@ -108,14 +128,6 @@ export default {
                         that.addressData = res.data.addr
                     }
                 })
-            }
-        })
-    },
-    getCart() {
-        this.$axios.get('/cart').then(res => {
-            if (res.status === 1) {
-                this.cart = res.data
-                console.log(this.cart)
             }
         })
     }

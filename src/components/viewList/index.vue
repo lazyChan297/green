@@ -15,10 +15,10 @@
                     </p>
                 </div>
             </div>
-            <!-- <div class="group">
+            <div class="group" v-if="item.status === 3">
                 <button class="gray">查看物流</button>
-                <button class="green">确认收获</button>
-            </div> -->
+                <button class="green">确认收货</button>
+            </div>
         </div>
     </div>
 </template>
@@ -61,9 +61,9 @@ export default {
         .status
             display flex
             justify-content space-between
-            height 30px
+            height 40px
             font-size 14px
-            line-height 30px
+            line-height 40px
             padding 0 10px
             span:last-child
                 color $green
@@ -87,9 +87,13 @@ export default {
         text-align right
         padding-bottom 6px
         padding-right 15px
+        height 40px
+        box-sizing border-box
         .green,.gray
             border-radius 20px
             background #fff
+            font-size 14px
+            margin 6px 0
         .green
             border 1px solid $green
             color $green
