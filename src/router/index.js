@@ -4,6 +4,9 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+import auditList from '@/views/auditList/index'
+import deliveryList from '@/views/deliveryList/index'
+
 export default new Router({
   routes: [
     {
@@ -83,7 +86,7 @@ export default new Router({
           name: 'all', 
           component: () => import('@/views/orderList/index'),
           meta: {
-            title: '订单',
+            title: '全部订单',
             type: 'all'
           }
         },
@@ -91,7 +94,7 @@ export default new Router({
           name: 'waitFH', 
           component: () => import('@/views/orderList/index'),
           meta: {
-            title: '订单',
+            title: '待发货',
             type: 'unshipped'
           }
         },
@@ -99,23 +102,15 @@ export default new Router({
           name: 'waitSH', 
           component: () => import('@/views/orderList/index'),
           meta: {
-            title: '订单',
+            title: '待收货',
             type: 'shipped'
-          }
-        },
-        { path: 'waitPJ', 
-          name: 'waitPJ', 
-          component: () => import('@/views/orderList/index'),
-          meta: {
-            title: '订单',
-            type: 'all'
           }
         },
         { path: 'complete', 
           name: 'complete', 
           component: () => import('@/views/orderList/index'),
           meta: {
-            title: '订单',
+            title: '已完成',
             type: 'done'
           }
         },
@@ -192,6 +187,93 @@ export default new Router({
       meta: {
         title: '物流详情'
       }
-    }
+    },
+    {
+      path: '/audit',
+      name: 'audit',
+      component: () => import('@/views/audit/index'),
+      meta: {
+        title: '审核'
+      },
+      redirect: '/audit/wait',
+      children: [
+        {
+          path: 'wait',
+          name: 'wait',
+          component: auditList,
+          meta: {
+            title: '待审核'
+          }
+        },
+        {
+          path: 'already',
+          name: 'already',
+          component: auditList,
+          meta: {
+            title: '已审核'
+          }
+        }
+      ]
+    },
+    {
+      path: '/auditDetail/:id',
+      name: 'auditDetail',
+      component: () => import('@/views/auditDetail/index'),
+      meta: {
+        title: '审核详情'
+      }
+    },
+    {
+      path: '/delivery',
+      name: 'delivery',
+      component: () => import('@/views/delivery/index'),
+      redirect: '/delivery/index',
+      children: [
+        {
+          path: 'index',
+          name: 'index',
+          component: deliveryList,
+          meta: {
+            title: '发货列表',
+            type: 'all'
+          }
+        },
+        {
+          path: 'wait',
+          name: 'wait',
+          component: deliveryList,
+          meta: {
+            title: '待发货',
+            type: 'unshipped'
+          }
+        },
+        {
+          path: 'already',
+          name: 'already',
+          component: deliveryList,
+          meta: {
+            title: '待收货',
+            type: 'shipped'
+          }
+        },
+        {
+          path: 'complete',
+          name: 'complete',
+          component: deliveryList,
+          meta: {
+            title: '已完成',
+            type: 'done'
+          }
+        }
+      ]
+     },
+     {
+       path: '/deliveryDetail/:no',
+       name: 'deliveryDetail',
+       component: () => import('@/views/deliveryDetail/index'),
+       meta: {
+         title: '订单详情'
+       }
+     }
   ]
 })

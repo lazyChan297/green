@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="group" v-if="item.status === 3">
-                <button class="gray">查看物流</button>
+                <router-link tag="button" :to="{path:`/express/${item.orderNo}`}" class="gray">查看物流</router-link>
                 <button class="green">确认收货</button>
             </div>
         </div>

@@ -10,6 +10,13 @@
                 </swiper>
                 <p class="price">¥{{goods.price}}</p>
                 <p class="goodsName">{{goods.name}}</p>
+                <p class="comment">
+                    <span>商品评价</span>
+                    <span>查看更多评价</span>
+                </p>
+                <div class="empty" v-if="comment.totalComments==0">
+                    ~~~暂无评价内容
+                </div>
                 <p class="title">详情页</p>
                 <div v-html="goods.details" class="details"></div>
             </div>
@@ -78,7 +85,8 @@ export default {
             loop: false,
             autoplay: 0,
             autoplayDisableOnInteraction: false      
-        }
+        },
+        comment: {}
       }
     },
     components: {
@@ -111,6 +119,7 @@ export default {
                let goods = Object.assign(this.goods, res.data.goods)
                this.goods = null
                this.goods = goods
+               this.getComment()
             })
         },
         payment() {
@@ -130,8 +139,18 @@ export default {
                             time: 500
                         })
                     } else {
-                        this.$router.push('/payment')
+                        window.location.href = global.serverHost + '/newCart/pay/#/goods/payment/'
                     }
+                }
+            })
+        },
+        //获取评论
+        getComment() {
+            this.$axios.get('/comment/getDetailsByGoods', {
+                params: {goodsId: this.$route.params.id}
+            }).then(res => {
+                if (res.status === 1) {
+                    this.comment = res.data
                 }
             })
         },
@@ -164,6 +183,8 @@ export default {
         transform translateY(100%)
     .slide-enter-active,.slide-leave-active
         transition all 0.25s
+    .goodDetail-wrapper
+        padding-bottom 50px
     .goodDetail-container
         .bgImg
             display block
@@ -183,6 +204,30 @@ export default {
             padding-left 15px
             background #fff
             line-height 40px
+        .comment
+            height 40px
+            display flex
+            align-items center
+            justify-content space-between
+            background #fff
+            padding 0 15px
+            margin-top 10px
+            border-bottom 1px solid #e2e2e2
+            span
+                &:first-child
+                    color #4a4a4a
+                    font-size 16px
+                &:last-child
+                    color #b2b2b2
+                    font-size 12px
+            & + .empty
+                height 57px
+                line-height 57px
+                text-align center
+                color #b2b2b2
+                font-size 12px
+                background #fff
+                margin-bottom 10px
         .title
             font-size 16px
             color $black

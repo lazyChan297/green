@@ -2,7 +2,9 @@
     <div class="orderDetail-wrapper">
         <p class="status">
             <span>状态</span>
-            <span>待发货</span>
+            <span v-if="details.status==3">待收货</span>
+            <span v-else-if="details.status==1">已完成</span>
+            <span v-else>待发货</span>
         </p>
         <div class="express-wrapper">
             <router-link class="express" v-if="details.lastExpressInfo && details.lastExpressInfo.context" :to="{path:`/express/${details.orderNo}`}">

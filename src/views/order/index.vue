@@ -4,7 +4,6 @@
             <router-link class="all" tag="li" :to="{path:'/order/all'}">全部</router-link>
             <router-link class="all" tag="li" :to="{path:'/order/waitFH'}">待发货</router-link>
             <router-link class="all" tag="li" :to="{path:'/order/waitSH'}">待收货</router-link>
-            <router-link class="all" tag="li" :to="{path:'/order/waitPJ'}">待评价</router-link>
             <router-link class="all" tag="li" :to="{path:'/order/complete'}">已完成</router-link>
         </ul>
         <router-view></router-view>

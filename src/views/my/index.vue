@@ -53,13 +53,43 @@
               </router-link>
           </section>
           <section class="QRcode">
-            <div>
+            <router-link to="/marketing/join" tag="div">
               <img src="../../common/images/yaoqing.png" width="54" alt="">
               <p class="desc">
                 邀请好友
               </p>
-              <router-link tag="p" class="invite" to="/marketing/join">立即邀请</router-link>
-            </div>
+              <p class="invite">立即邀请</p>
+            </router-link>
+          </section>
+          <section class="manager" v-if="userInfo.isManager">
+            <span>管理员中心</span>
+            <ul>
+              <router-link tag="li" to="/audit">
+                <div class="icon icon-shenhe">
+                    <span class="tips">1</span>
+                </div>
+                <p>审核</p>
+              </router-link>
+              <router-link tag="li" to="/delivery">
+                <div class="icon icon-fahuo">
+                    <span class="tips">1</span>
+                </div>
+                <p>发货</p>
+              </router-link>
+            </ul>
+          </section>
+          <section class="supplier" v-if="userInfo.isSupplier">
+            <ul>
+              <router-link tag="li" to="/delivery">
+                <div class="icon icon-fahuo">
+                </div>
+                <p>发货管理</p>
+              </router-link>
+              <li>
+                <span>您有<span class="red">{{userInfo.unshippedOrders}}</span>件待发货订单</span>
+                <div class="icon icon-link"></div>
+              </li>
+            </ul>
           </section>
         </div>
         <footer-nav></footer-nav>
@@ -79,7 +109,6 @@ export default {
     getUserCenter() {
       this.$axios.get('/home/myCenter').then(res => {
         if (res.status === 1) {
-          let userInfo = this.userInfo
           let _userInfo = Object.assign(userInfo, res.data)
           this.saveUserInfo(_userInfo)
         }
@@ -98,6 +127,9 @@ export default {
 </script>
 <style lang="stylus" scoped>
   @import '../../common/stylus/variable.styl'
+  .my-wrapper
+    background $bgcolor
+    padding-bottom 50px
   .header
     background url('../../common/images/mybgimg.jpg') no-repeat center
     border-bottom-left-radius 18px
@@ -192,4 +224,69 @@ export default {
       line-height 20px
       border-radius 20px
       padding 0 10px
+  /* 管理员中心 */
+  .supplier,
+  .manager
+    margin 10px 15px
+    border-radius 8px
+    background #fff
+    padding 0 10px
+    &>span
+      display block
+      height 40px
+      line-height 40px
+      border-bottom 1px solid #e2e2e2
+      color #4a4a4a
+    &>ul
+      display flex
+      li
+        flex 1
+        height 80px
+        text-align center
+        &>div
+          position relative
+          display inline-block
+          vertical-align middle
+          
+        &>p
+          display inline-block
+          font-size 12px
+          font-weight bold
+          color #4a4a4a
+          line-height 80px
+          margin-left 15px
+          vertical-align middle
+        .tips
+          position absolute
+          display block
+          border-radius 50%
+          color #fff
+          width 17px
+          height 17px
+          background #FF6659
+          top -10px
+          text-align center
+          line-height 17px
+          font-size 12px
+          right -16px
+  /* 供货商 */
+  .supplier
+    li  
+      &:first-child
+        text-align left
+        padding-left 10px
+      &:last-child
+        text-align right
+        &>span
+          display inline-block
+          vertical-align middle
+          line-height 80px
+          color #b2b2b2
+          font-size 12px
+          font-weight normal
+        .icon-link
+          display inline-block
+          vertical-align middle
+        .red
+          color $red
 </style>
