@@ -71,7 +71,7 @@ export default {
     getCart() {
         this.$axios.get('/cart/confirm/').then(res => {
             if (res.status === 1) {
-                this.addressData = res.data.addr
+                this.addressData = res.data.addr.id?res.data.addr:null
                 this.cart = res.data.cart
             } else {
                 this.$router.push('/cart')
